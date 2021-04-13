@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="master.css">
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <div class="search">
+          <input @keypress="search" type="text" name="" value="" v-model="query">
+        </div>
+      </header>
+
+      <div class="card-container">
+        <div class="card" v-for="risultato in risultati">
+          <div class="film-info">
+            <p>{{risultato.title || risultato.name}}</p>
+            <p>{{risultato.original_title || risultato.original_name}}</p>
+            <p>{{risultato.original_language}}</p>
+            <p>{{risultato.vote_average}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>
