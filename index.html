@@ -6,26 +6,32 @@
     <link rel="stylesheet" href="master.css">
   </head>
   <body>
+    <main>
+
+
     <div id="root">
       <header>
-        <div class="search">
-          <input @keypress="search" type="text" name="" value="" v-model="query">
+        <div class="controls">
+          <input @keyup.enter="search" @keyup.delete="clear" type="text" name="" value="" v-model="query">
+          <button @click="clear" type="button" name="button">Ripristina risultati</button>
         </div>
       </header>
 
       <div class="card-container">
-        <div class="card" v-for="risultato in risultati">
-          <div class="film-info">
+        <div class="card" v-for="risultato in risultati"  @mouseover="hover = true" @mouseleave="hover = false">
+          <img v-if="(risultato.poster_path)":src="`https://image.tmdb.org/t/p/w342/${risultato.poster_path}`" alt="">
+          <img v-else="(!risultato.poster_path)":src="placeholder" alt="">
+          <div class="film-info" v-show="hover">
             <p>{{risultato.title || risultato.name}}</p>
             <p>{{risultato.original_title || risultato.original_name}}</p>
-            <p>{{risultato.original_language}}</p>
+            <img :src="`https://www.unknown.nu/flags/images/${risultato.original_language}-100`">
             <p>{{risultato.vote_average}}</p>
           </div>
         </div>
       </div>
 
     </div>
-
+</main>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js" charset="utf-8"></script>
