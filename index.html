@@ -3,29 +3,44 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Zen+Dots&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="master.css">
   </head>
   <body>
     <main>
-
-
     <div id="root">
       <header>
+        <div class="container">
+        <h2 id="logo">TRUSTNOSTREAMING</h2>
         <div class="controls">
-          <input @keyup.enter="search" @keyup.delete="clear" type="text" name="" value="" v-model="query">
-          <button @click="clear" type="button" name="button">Ripristina risultati</button>
+          <input class="font" @keyup.enter="search" @keyup.delete="clear" type="text" name="" value="" v-model="query">
+          <button class="font" @click="search" type="button" name="button">Cerca</button>
         </div>
+      </div>
       </header>
-
-      <div class="card-container">
-        <div class="card" v-for="risultato in risultati"  @mouseover="hover = true" @mouseleave="hover = false">
+      <div id="banner" v-show="show" class="">
+        <h1 class="font">I tuoi film preferiti appariranno qui.</h1>
+          <div class="banner-wrapper">
+            <img src="https://picsum.photos/352/513" alt="">
+            <img src="https://picsum.photos/352/513" alt="">
+            <img src="https://picsum.photos/352/513" alt="">
+            <img src="https://picsum.photos/352/513" alt="">
+          </div>
+      </div>
+        <div class="card-container">
+        <div class="card" v-for="risultato in risultati">
           <img v-if="(risultato.poster_path)":src="`https://image.tmdb.org/t/p/w342/${risultato.poster_path}`" alt="">
-          <img v-else="(!risultato.poster_path)":src="placeholder" alt="">
-          <div class="film-info" v-show="hover">
+          <img v-else="(!risultato.poster_path)":src="placeholder" alt="" style="height: 513px;
+          width: 342px;">
+          <div class="film-info">
             <p>{{risultato.title || risultato.name}}</p>
-            <p>{{risultato.original_title || risultato.original_name}}</p>
-            <img :src="`https://www.unknown.nu/flags/images/${risultato.original_language}-100`">
-            <p>{{risultato.vote_average}}</p>
+            <p>{{risultato.overview}}</p>
+              <div class="votes">
+                <span v-html="votoStelle(risultato.vote_average)"></span><span> su {{risultato.vote_count}} voti</span>
+              </div>
+              <img :src="`https://www.unknown.nu/flags/images/${risultato.original_language}-100`" style="width: 50px;">
           </div>
         </div>
       </div>

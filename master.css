@@ -4,19 +4,76 @@
   box-sizing: border-box;
 }
 
-main{
-  width: 100%;
-  height: 100%;
-  background-color: #75A7B5;
+body{
+  background-color: #000000;
 }
+
 
 header{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 100px;
-  background-color: grey;
+  background-color: #F4FC07;
+}
+
+#logo{
+  font-size: 30px;
+  font-family: 'Zen Dots', cursive;
+}
+
+#banner{
+  color: white;
+  margin-top: 75px;
+  font-family: 'Archivio Black', sans-serif;
+  text-align: center;
+}
+
+.banner-wrapper{
+  margin-top: 75px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.controls input{
+  font-size: 17px;
+  height: 50px;
+  width: 400px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.controls button{
+  height: 50px;
+  width: 50px;
+  font-size: 17px;
+  appearance: auto;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: pointer;
+  box-sizing: border-box;
+  margin: none;
+  font: none;
+  padding: none;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  font-weight: 1400;
+}
+
+main{
+  width: 100%;
+  height: 100%;
 }
 
 .card-container{
@@ -28,23 +85,65 @@ header{
   width: 100%;
 }
 
+.card-container h1{
+  align-self: center;
+  color: #CCB700;
+}
+
 .card{
+  cursor: pointer;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
   background-color: rgba(0, 0, 0, 0.5);
+  margin: 10px;
 }
 
-.placeholder{
-  height: 513px;
-  width: 342px;
+.card img:first-child{
+  max-width: 352px;
+  max-height: 513px;
+  min-width: 352px;
+  min-height: 513px;
+}
+
+.card:hover img:first-child{
+  filter: blur(5px);
+  transition: 1s ease;
 }
 
 .film-info{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   color: white;
   display: flex;
   flex-direction: column;
-  align-items: space-around;
+  justify-content: space-around;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.card:hover .film-info{
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+}
+
+#font{
+  font-family: 'Archivio Black', sans-serif;
 }
